@@ -39,7 +39,7 @@ describe "Static pages" do
   describe "Contact page" do
     it "should have title 'CS 232 Rails Development | Contact'" do
       visit '/static_pages/contact'
-      expect(page).to have_title("CS 232 Rails Development | About Us")
+      expect(page).to have_title("CS 232 Rails Development | Contact")
     end
 
     it "should contain the words 'CS 232 Contact'" do
