@@ -49,37 +49,37 @@ describe "Static pages" do
 
     it "should contain an H1 element with class 'page-title'" do
       visit '/static_pages/contact'
-      expect(page).to have_content('<H1 class="page-title"')
+      expect(page).to have_selector("h1.page-title")
     end
 
     it "should contain a definition list with a <dl>" do
       visit '/static_pages/contact'
-      expect(page).to have_content('<dl>')
+      expect(page).to have_selector('dl')
     end
 
     it "should contain a <dt> element" do
       visit '/static_pages/contact'
-      expect(page).to have_content('<dt>')
+      expect(page).to have_selector('dt')
     end
 
     it "should contain a <dd> element" do
       visit '/static_pages/contact'
-      expect(page).to have_content('<dd>')
+      expect(page).to have_selector('dd')
     end
 
     it "should contain a <section class='main'> element" do
       visit '/static_pages/contact'
-      expect(page).to have_content('<section class="main">')
+      expect(page).to have_selector('section.main')
     end
 
     it "should contain a 'h1.page-title' selector in the CSS" do
       visit '/static_pages/contact'
-      expect(page).to have_content('h1.page-title')
+      expect(page).to have_css('h1.page-title')
     end
 
     it "should contain a '.main' selector in the CSS" do
       visit '/static_pages/contact'
-      expect(page).to have_content('.main')
+      expect(page).to have_css('.main')
     end
 
   end
