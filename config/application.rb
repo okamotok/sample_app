@@ -26,5 +26,6 @@ module SampleApp
     # config.i18n.default_locale = :de
     ### Add following line for bootstrap http://ruby.railstutorial.org/chapters/filling-in-the-layout#code-bootstrap_config
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    I18n.enforce_available_locales = false
   end
 end
