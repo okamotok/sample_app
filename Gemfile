@@ -43,3 +43,9 @@ group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
+
+group :test, :development do
+  gem "pry"
+  gem "pry-nav"
+  gem "pry-stack_explorer"
+end
