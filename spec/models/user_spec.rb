@@ -11,6 +11,7 @@ describe User do
   it {should respond_to(:password_digest)}
   it {should respond_to(:password)}
   it {should respond_to(:password_confirmation)}
+  it {should respond_to(:remember_token) }
   it {should respond_to(:authenticate)}
   it {should be_valid}
 
@@ -77,6 +78,7 @@ describe User do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
   end
+
   describe "return value of authentication method" do
     before { @user.save }
     let (:found_user) { User.find_by(email: @user.email) }
@@ -89,9 +91,11 @@ describe User do
       let (:user_for_invalid_password) { found_user.authenticate("invalid")}
       specify { expect(user_for_invalid_password).to be_false }
     end
-
   end
 
-
+  describe "remember_token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank}
+  end
 
 end
