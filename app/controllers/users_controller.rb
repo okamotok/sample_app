@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :signed_in_user_only, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -20,11 +22,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user is now defined in correct_user so don't need it here anymore
+    #@user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user is now defined in correct_user so don't need it here anymore
+    #@user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile Updated"
       redirect_to @user
@@ -39,4 +43,12 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
+    def signed_in_user_only
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
 end
