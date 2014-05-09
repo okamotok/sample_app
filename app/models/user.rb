@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
   before_create :create_remember_token
 
   #callback to convert all :email attributes to lower case before saving
