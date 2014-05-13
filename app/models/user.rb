@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   def feed
-    Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
+    # to list just user's own posts: Micropost.where("user_id = ?", id)
   end
 
   def following?(other_user)
